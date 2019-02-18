@@ -26,8 +26,8 @@ prompt.get(schema, (err,res) => {
     let v3WalletData = fs.readFileSync(res.wallet,'utf8');
     try{
         let walletRead = Wallet.fromV3(JSON.parse(v3WalletData), res.password);
-        console.log(walletRead);
         console.log(`Public Key: ${walletRead.getAddressString()}`);
+        console.log(`Wallet Password Entered is Correct`);
     }catch(e){
         console.log('Wrong Passphrase')
     }
