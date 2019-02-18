@@ -11,18 +11,15 @@ var schema = {
         wallet: {
             description: "Wallet File",
             required: true,
-        },
-        address:{
-          description: "Address"
         }
     }
 };
 
 Prompt.start();
 Prompt.get(schema, function(err, res) {
-    let walletFile = fs.readFileSync(res.wallet,'utf8')
-  web3.eth.getBalance(res.address)
+    let walletFile = fs.readFileSync(res.wallet,'utf8');
+  web3.eth.getBalance('0x'+JSON.parse(walletFile).address)
   .then(function(balance) {
-    console.log('\n\tBalance: ' + web3.utils.fromWei(balance, 'ether') + '\n');
+    console.log('\n Balance: ' + web3.utils.fromWei(balance, 'ether') + '\n');
   })
 });
